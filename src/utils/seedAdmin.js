@@ -1,0 +1,2 @@
+import { getCollections } from "../config/db.js";
+export async function seedAdmin(){ const email=process.env.ADMIN_EMAIL; if(!email) return console.log('Admin seed skipped.'); const {usersCollection}=getCollections(); const admin=await usersCollection.findOne({email}); if(!admin) return console.log(`Admin seed skipped: ${email} does not exist yet.`); await usersCollection.updateOne({email},{$set:{role:'admin',status:'active',isVerifiedSeller:false,updatedAt:new Date()}}); console.log(`Admin user ready: ${email}`); }

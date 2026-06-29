@@ -1,0 +1,2 @@
+export function notFoundHandler(req,res,next){ res.status(404); next(new Error(`Route not found: ${req.originalUrl}`)); }
+export function errorHandler(error,req,res,next){ const statusCode=res.statusCode&&res.statusCode!==200?res.statusCode:500; const isProduction=process.env.NODE_ENV==='production'; console.error('Error:',{message:error.message,path:req.originalUrl,method:req.method}); res.status(statusCode).json({success:false,message:isProduction&&statusCode===500?'Internal server error.':error.message,stack:isProduction?undefined:error.stack}); }
