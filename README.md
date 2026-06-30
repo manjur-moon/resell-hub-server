@@ -3,6 +3,12 @@
 ## Purpose
 Backend API for ReSell Hub marketplace with authentication, RBAC, products, orders, payments, wishlist, and dashboard stats.
 
+##live url:
+https://resell-hub-client-gamma.vercel.app/
+
+https://resell-hub-server-rewt.onrender.com
+
+
 ## Features
 - Express REST API
 - MongoDB native driver
@@ -25,7 +31,7 @@ Backend API for ReSell Hub marketplace with authentication, RBAC, products, orde
 - stripe
 - nodemon
 
-## Run
+
 
 ```bash
 npm install
