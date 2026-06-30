@@ -30,16 +30,25 @@ https://resell-hub-server-rewt.onrender.com
 - Admin can approve or manage seller-submitted products
 - Product status
 
-## Packages
-- express
-- mongodb
-- dotenv
-- cors
-- cookie-parser
+## NPM Packages Used
+
+### Client Side
+
+- next
+- react
+- react-dom
+- axios
+- @tanstack/react-query
 - better-auth
-- @better-auth/mongo-adapter
-- stripe
-- nodemon
+- react-hook-form
+- react-hot-toast
+- lucide-react
+- framer-motion
+- recharts
+- tailwindcss
+- @tailwindcss/postcss
+- eslint
+- eslint-config-next
 
 ##run 
 
