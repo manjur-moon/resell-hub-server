@@ -50,6 +50,18 @@ https://resell-hub-server-rewt.onrender.com
 - eslint
 - eslint-config-next
 
+- ### Server Side
+
+- express
+- mongodb
+- cors
+- dotenv
+- cookie-parser
+- better-auth
+- @better-auth/mongo-adapter
+- stripe
+- nodemon
+
 ##run 
 
 ```bash
