@@ -31,7 +31,7 @@ https://resell-hub-server-rewt.onrender.com
 - stripe
 - nodemon
 
-
+##run 
 
 ```bash
 npm install
