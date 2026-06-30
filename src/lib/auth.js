@@ -5,7 +5,19 @@ import { jwt } from "better-auth/plugins";
 import { authDatabase, mongoClient } from "../config/db.js";
 dotenv.config();
 const isProduction = process.env.NODE_ENV === "production";
-const trustedOrigins = ["http://localhost:3000","http://localhost:3001",process.env.CLIENT_URL,process.env.CLIENT_URL_2].filter(Boolean);
+const normalizeOrigin = (value) => {
+  if (!value) return "";
+  return value.trim().replace(/\/$/, "");
+};
+
+const trustedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:3001",
+  process.env.CLIENT_URL,
+  process.env.CLIENT_URL_2,
+]
+  .filter(Boolean)
+  .map(normalizeOrigin);
 const socialProviders = {};
 if(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET){ socialProviders.google={clientId:process.env.GOOGLE_CLIENT_ID, clientSecret:process.env.GOOGLE_CLIENT_SECRET}; }
 export const auth = betterAuth({

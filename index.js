@@ -21,17 +21,46 @@ const app = express();
 const port = process.env.PORT || 5000;
 app.set("trust proxy", 1);
 
-const allowedOrigins = ["http://localhost:3000", "http://localhost:3001", process.env.CLIENT_URL, process.env.CLIENT_URL_2].filter(Boolean);
-app.use(cors({
+const normalizeOrigin = (value) => {
+  if (!value) return "";
+  return value.trim().replace(/\/$/, "");
+};
+
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:3001",
+  process.env.CLIENT_URL,
+  process.env.CLIENT_URL_2,
+]
+  .filter(Boolean)
+  .map(normalizeOrigin);
+
+const corsOptions = {
   origin(origin, cb) {
     if (!origin) return cb(null, true);
-    if (allowedOrigins.includes(origin)) return cb(null, true);
+
+    const normalizedOrigin = normalizeOrigin(origin);
+
+    if (allowedOrigins.includes(normalizedOrigin)) {
+      return cb(null, true);
+    }
+
     return cb(new Error(`CORS blocked for origin: ${origin}`));
   },
   credentials: true,
   methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization", "stripe-signature"],
-}));
+  allowedHeaders: [
+    "Origin",
+    "X-Requested-With",
+    "Content-Type",
+    "Accept",
+    "Authorization",
+    "stripe-signature",
+  ],
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 app.all("/api/better-auth/*", toNodeHandler(auth));
 app.post("/api/payments/webhook", express.raw({ type: "application/json" }), stripeWebhookHandler);
