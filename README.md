@@ -20,6 +20,16 @@ https://resell-hub-server-rewt.onrender.com
 - Wishlist APIs
 - Dashboard analytics APIs
 
+- ## Key Features
+
+- User registration and login with email/password authentication
+- Google login support
+- Role-based dashboard for Buyer, Seller, and Admin
+- Buyer can browse approved second-hand products
+- Seller can add products with title, category, price, stock, location, description, and image
+- Admin can approve or manage seller-submitted products
+- Product status
+
 ## Packages
 - express
 - mongodb
